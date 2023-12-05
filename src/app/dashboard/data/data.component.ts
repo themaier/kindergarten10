@@ -37,7 +37,12 @@ export class DataComponent implements OnInit {
   }
 
   public returnAllPages() {
-    return Math.ceil(this.storeService.childrenTotalCount / CHILDREN_PER_PAGE)
+    let res = [];
+    const pageCount = Math.ceil(this.storeService.childrenTotalCount / CHILDREN_PER_PAGE);
+    for (let i = 0; i < pageCount; i++) {
+      res.push(i + 1);
+    }
+    return res;
   }
 
   public cancelRegistration(childId: string) {

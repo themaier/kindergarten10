@@ -20,7 +20,7 @@
 
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
-            <button [ngClass]="page == currentPage ? 'active' : ''" (click)="selectPage(page)" type="button" *ngFor="let page of returnAllPages() | pagination ">{{page}}</button>
+            <button [ngClass]="page == currentPage ? 'active' : ''" (click)="selectPage(page)" type="button" *ngFor="let page of returnAllPages()">{{page}}</button>
         </div>
     </div>
 </div>
