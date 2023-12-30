@@ -1,11 +1,33 @@
 <form [formGroup]="addChildForm" (ngSubmit)="onSubmit()">
-    <h2>Ihr Kind anmelden!</h2>
-    <input placeholder="Name" type="input" formControlName="name"><br />
-    <input placeholder="Geburtsdatum" type="date" formControlName="birthDate"><br />
-    <select formControlName="kindergardenId">
-        <option value="" disabled>Bitte auswählen</option>
-        <option *ngFor="let kindergarden of storeService.kindergardens" [ngValue]="kindergarden.id">
-            {{kindergarden.name}}, {{kindergarden.address}}</option>
-    </select>
-    <button type="submit">Erfassen</button>
+  <h2>Ihr Kind anmelden!</h2>
+  <div>
+    <mat-form-field hintLabel="Name">
+      <mat-label>Name des Kindes eingeben</mat-label>
+      <input matInput placeholder="Vorname Nachname" formControlName="name" required>
+      <!-- <mat-error *ngIf="name.invalid">{{ getNameErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+  </div>
+    
+  <div>
+    <mat-form-field>
+      <mat-label>Geburtsdatum auswählen</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="birthDate">
+      <!-- <mat-hint>DD/MM/YYYY</mat-hint> -->
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker startView="year" [startAt]="startDate" class="custom-datepicker"></mat-datepicker>
+      <!-- <mat-error *ngIf="birthDate.invalid">{{ getBirthDateErrorMessage() }}</mat-error> -->
+    </mat-form-field>
+  </div>
+    
+  <div>
+    <mat-form-field>
+      <mat-label>Kindergarten auswählen</mat-label>
+      <mat-select formControlName="kindergardenId">
+        <mat-option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">{{ kindergarden.name }}</mat-option>
+      </mat-select>
+      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+    </mat-form-field>
+  </div>
+  <button type="submit">Erfassen</button>
 </form>

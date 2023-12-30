@@ -11,12 +11,13 @@ import { HeaderComponent } from './header/header.component';
 import { ButtonComponent } from './dashboard/button/button.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MAT_DATE_LOCALE} from '@angular/material/core';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    AddDataComponent,
+    // AddDataComponent,
     DataComponent,
     HeaderComponent,
     ButtonComponent,
@@ -25,11 +26,13 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    AddDataComponent, //import instead of declaration
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule
   ],
+  // providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de' }],
   providers: [],
   bootstrap: [AppComponent]
 })
