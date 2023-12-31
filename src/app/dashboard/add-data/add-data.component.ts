@@ -11,6 +11,7 @@ import { BackendService } from 'src/app/shared/backend.service';
 import { StoreService } from 'src/app/shared/store.service';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroupDirective } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
 /** @title Form field with error messages */
 @Component({
@@ -51,13 +52,21 @@ export class AddDataComponent implements OnInit{
 
   ngOnInit(): void {
     this.addChildForm = this.formbuilder.group({
-      name: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required, this.customPatternValidator()]),
       birthDate: new FormControl(null, [Validators.required]),
       kindergardenId: new FormControl('', [Validators.required])
       // name: ['', [Validators.required]],
       // kindergardenId: ['', Validators.required],
       // birthDate: [null, Validators.required]
     })
+  }
+
+  customPatternValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const pattern = /^[A-Za-z]{2,} [A-Za-z]{2,}$/;
+      const isValid = pattern.test(control.value);
+      return isValid ? null : { 'invalidPattern': { value: control.value } };
+    };
   }
 
   getNameErrorMessage() {
