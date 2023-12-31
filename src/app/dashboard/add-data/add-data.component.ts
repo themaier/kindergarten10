@@ -10,7 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BackendService } from 'src/app/shared/backend.service';
 import { StoreService } from 'src/app/shared/store.service';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-
+import * as bootstrap from 'bootstrap';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 /** @title Form field with error messages */
 @Component({
@@ -19,7 +21,19 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
   styleUrls: ['./add-data.component.scss'],
   standalone: true,
   providers: [],
-  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, FormsModule, ReactiveFormsModule, MatSelectModule, BrowserAnimationsModule],
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    NgbAlertModule,
+    NgbToastModule,
+  ],
+
 })
 
 
@@ -36,7 +50,7 @@ export class AddDataComponent implements OnInit{
 
   currentYear = new Date().getFullYear();
   startDate = new Date(this.currentYear-3, 0, 1);
-
+  showAlert = false;
 
   ngOnInit(): void {
     this.addChildForm = this.formbuilder.group({
@@ -66,7 +80,7 @@ export class AddDataComponent implements OnInit{
   onSubmit() {
     if(this.addChildForm.valid) {
       console.log(this.currentPage);
-      window.alert("Kind erfolgreich angemeldet");
+      this.showAlert = true;
       this.backendService.addChildData(this.addChildForm.value, this.currentPage);
     }
   }

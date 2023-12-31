@@ -31,3 +31,9 @@
   </div>
   <button type="submit">Erfassen</button>
 </form>
+
+<div *ngIf="showAlert" class="popup-overlay">
+  <ngb-alert [dismissible]="true" type="success" (click)="showAlert = false">
+    <h2>Kind wurde erfolgreich angemeldet!</h2>
+  </ngb-alert>
+</div>
