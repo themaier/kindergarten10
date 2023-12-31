@@ -12,6 +12,8 @@ import { StoreService } from 'src/app/shared/store.service';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroupDirective } from '@angular/forms';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+import * as moment from 'moment';
+
 
 /** @title Form field with error messages */
 @Component({
@@ -57,6 +59,10 @@ export class AddDataComponent implements OnInit{
       kindergardenId: new FormControl('', [Validators.required])
     })
   }
+  
+  formatDate(date: Date): string {
+    return date ? `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}` : '';
+  }
 
   customPatternValidator(): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} | null => {
@@ -65,6 +71,15 @@ export class AddDataComponent implements OnInit{
       return isValid ? null : { 'invalidPattern': true };
     };
   }
+
+  minDate = new Date(this.currentYear-7, 0, 1); // January 1, 2021
+
+  myFilter = (d: Date | null): boolean => {
+    if (!d) {
+      return false;
+    }
+    return d >= this.minDate;
+  };
 
   getNameErrorMessage() {
     const nameControl = this.addChildForm.get('name');
@@ -93,13 +108,19 @@ export class AddDataComponent implements OnInit{
     return '';
   }
 
+ 
+
   onSubmit(formDirective: FormGroupDirective) {
     if(this.addChildForm.valid) {
+      console.log(this.currentPage);
+      
+      this.addChildForm.patchValue({
+        birthDate: moment(this.addChildForm.value.birthDate).format("YYYY-MM-DD")
+      });
+      this.backendService.addChildData(this.addChildForm.value, this.currentPage);
       formDirective.resetForm();
       this.addChildForm.reset();
-      console.log(this.currentPage);
       this.showAlert = true;
-      this.backendService.addChildData(this.addChildForm.value, this.currentPage);
     }
   }
 }

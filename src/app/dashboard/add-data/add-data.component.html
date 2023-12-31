@@ -11,7 +11,7 @@
   <div>
     <mat-form-field>
       <mat-label>Geburtsdatum auswählen</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="birthDate">
+      <input matInput [matDatepicker]="picker" [matDatepickerFilter]="myFilter" formControlName="birthDate">
       <!-- <mat-hint>DD/MM/YYYY</mat-hint> -->
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
