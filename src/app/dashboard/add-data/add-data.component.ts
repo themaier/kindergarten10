@@ -55,9 +55,6 @@ export class AddDataComponent implements OnInit{
       name: new FormControl('', [Validators.required, this.customPatternValidator()]),
       birthDate: new FormControl(null, [Validators.required]),
       kindergardenId: new FormControl('', [Validators.required])
-      // name: ['', [Validators.required]],
-      // kindergardenId: ['', Validators.required],
-      // birthDate: [null, Validators.required]
     })
   }
 
@@ -65,30 +62,41 @@ export class AddDataComponent implements OnInit{
     return (control: AbstractControl): {[key: string]: any} | null => {
       const pattern = /^[A-Za-z]{2,} [A-Za-z]{2,}$/;
       const isValid = pattern.test(control.value);
-      return isValid ? null : { 'invalidPattern': { value: control.value } };
+      return isValid ? null : { 'invalidPattern': true };
     };
   }
 
   getNameErrorMessage() {
-    if (this.name.hasError('required')) {
+    const nameControl = this.addChildForm.get('name');
+    if (nameControl.hasError('required')) {
       return 'Bitte etwas eingeben.';
     }
-    return this.name.hasError('string') ? 'Kein korrekter Name' : '';
+    if (nameControl.hasError('invalidPattern')) {
+      return 'Namesformat beachten: "Max Mustermann"';
+    }
+    return '';
   }
 
   getBirthDateErrorMessage() {
-    if (this.birthDate.hasError('required')) {
-      return 'Bitte etwas eingeben.';
+    const birthDateControl = this.addChildForm.get('birthDate');
+    if (birthDateControl.hasError('required')) {
+      return 'Bitte Geburtsdatum auswählen.';
     }
-    return this.birthDate.hasError('birthDate') ? 'Kein korrektes Geburtsdatum' : '';
+    return '';
+  }
+
+  getKindergardenErrorMessage() {
+    const kindergardenControl = this.addChildForm.get('kindergardenId');
+    if (kindergardenControl.hasError('required')) {
+      return 'Bitte Kindergarten auswählen.';
+    }
+    return '';
   }
 
   onSubmit(formDirective: FormGroupDirective) {
     if(this.addChildForm.valid) {
       formDirective.resetForm();
       this.addChildForm.reset();
-      this.addChildForm.markAsPristine();
-      this.addChildForm.markAsUntouched();
       console.log(this.currentPage);
       this.showAlert = true;
       this.backendService.addChildData(this.addChildForm.value, this.currentPage);
