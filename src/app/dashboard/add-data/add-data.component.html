@@ -1,4 +1,4 @@
-<form [formGroup]="addChildForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="addChildForm" (ngSubmit)="onSubmit(formDirective)" #formDirective="ngForm">
   <h2>Ihr Kind anmelden!</h2>
   <div>
     <mat-form-field hintLabel="Name">

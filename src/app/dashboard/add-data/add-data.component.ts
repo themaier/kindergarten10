@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BackendService } from 'src/app/shared/backend.service';
 import { StoreService } from 'src/app/shared/store.service';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroupDirective } from '@angular/forms';
 
 /** @title Form field with error messages */
 @Component({
@@ -27,7 +28,7 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    NgbAlertModule,
+    NgbAlertModule
   ],
 
 })
@@ -73,8 +74,12 @@ export class AddDataComponent implements OnInit{
     return this.birthDate.hasError('birthDate') ? 'Kein korrektes Geburtsdatum' : '';
   }
 
-  onSubmit() {
+  onSubmit(formDirective: FormGroupDirective) {
     if(this.addChildForm.valid) {
+      formDirective.resetForm();
+      this.addChildForm.reset();
+      this.addChildForm.markAsPristine();
+      this.addChildForm.markAsUntouched();
       console.log(this.currentPage);
       this.showAlert = true;
       this.backendService.addChildData(this.addChildForm.value, this.currentPage);
