@@ -17,8 +17,6 @@ import {MAT_DATE_LOCALE} from '@angular/material/core';
   declarations: [
     AppComponent,
     DashboardComponent,
-    // AddDataComponent,
-    DataComponent,
     HeaderComponent,
     ButtonComponent,
     LoadingSpinnerComponent
@@ -26,7 +24,8 @@ import {MAT_DATE_LOCALE} from '@angular/material/core';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AddDataComponent, //import instead of declaration
+    AddDataComponent,
+    DataComponent,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

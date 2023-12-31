@@ -9,9 +9,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BackendService } from 'src/app/shared/backend.service';
 import { StoreService } from 'src/app/shared/store.service';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
-import * as bootstrap from 'bootstrap';
-import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 /** @title Form field with error messages */
@@ -31,7 +28,6 @@ import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
     MatSelectModule,
     BrowserAnimationsModule,
     NgbAlertModule,
-    NgbToastModule,
   ],
 
 })
