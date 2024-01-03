@@ -117,6 +117,8 @@ export class AddDataComponent implements OnInit{
       this.addChildForm.patchValue({
         birthDate: moment(this.addChildForm.value.birthDate).format("YYYY-MM-DD")
       });
+      this.addChildForm.addControl('registrationDate', new FormControl(new Date().toISOString()));
+      console.log(this.addChildForm.value)
       this.backendService.addChildData(this.addChildForm.value, this.currentPage);
       formDirective.resetForm();
       this.addChildForm.reset();
