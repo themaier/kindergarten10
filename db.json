@@ -4,97 +4,71 @@
       "id": "_iL77oo",
       "name": "Viktor Sachs 3",
       "birthDate": "2022-06-04",
-      "kindergardenId": 4
+      "kindergardenId": 4,
+      "registrationDate": "2022-10-15"
     },
     {
       "id": "_iL790m",
       "name": "Emily Nilson 4",
       "birthDate": "2019-01-04",
-      "kindergardenId": 2
+      "kindergardenId": 2,
+      "registrationDate": "2023-10-15"
     },
     {
       "id": "_iL790m",
       "name": "Tom Reiner 5",
       "birthDate": "2019-01-04",
-      "kindergardenId": 2
+      "kindergardenId": 2,
+      "registrationDate": "2024-01-01"
     },
     {
       "id": "_iL790m",
       "name": "Michael Mittner 6",
       "birthDate": "2019-01-04",
-      "kindergardenId": 2
+      "kindergardenId": 2,
+      "registrationDate": "2023-04-15"
     },
     {
       "id": "_iL790m",
       "name": "Nikolaus Polarius 7",
       "birthDate": "2019-01-04",
-      "kindergardenId": 2
+      "kindergardenId": 2,
+      "registrationDate": "2023-05-15"
     },
     {
       "name": "Paulus Fensterl 8",
       "kindergardenId": 2,
       "birthDate": "2023-09-28",
-      "id": "9py_fwi"
+      "id": "9py_fwi",
+      "registrationDate": "2023-04-16"
     },
     {
       "name": "Heidi aus den Bergen 9",
       "kindergardenId": 2,
       "birthDate": "2023-10-05",
-      "id": "hOHEFCv"
+      "id": "hOHEFCv",
+      "registrationDate": "2023-04-16"
     },
     {
       "name": "Traude Widmann 10",
       "kindergardenId": 2,
       "birthDate": "2023-10-05",
-      "id": "cu0_2Ad"
+      "id": "cu0_2Ad",
+      "registrationDate": "2022-10-17"
     },
     {
       "name": "Heiner Kühlschrank 11",
       "kindergardenId": 2,
       "birthDate": "2023-10-26",
-      "id": "ip57WMS"
+      "id": "ip57WMS",
+      "registrationDate": "2022-10-22"
     },
     {
       "name": "Nicole Witz 12",
       "kindergardenId": 3,
       "birthDate": "2023-10-13",
-      "id": "JmbNaBH"
-    },
-    {
-      "name": "habsod",
-      "birthDate": "2020-04-09T22:00:00.000Z",
-      "kindergardenId": 4,
-      "id": "9ec2zIU"
-    },
-    {
-      "name": "habsoda",
-      "birthDate": "2020-04-09T22:00:00.000Z",
-      "kindergardenId": 4,
-      "id": "1Z0xn0j"
-    },
-    {
-      "name": "habsoda",
-      "birthDate": "2020-04-09T22:00:00.000Z",
-      "kindergardenId": 4,
-      "id": "zv1DWsT"
-    },
-    {
-      "name": "habsoda",
-      "birthDate": "2020-04-09T22:00:00.000Z",
-      "kindergardenId": 4,
-      "id": "8SgVhFU"
-    },
-    {
-      "name": "bauer mas",
-      "birthDate": "2020-07-07T22:00:00.000Z",
-      "kindergardenId": 3,
-      "id": "aGU7Xe9"
-    },
-    {
-      "name": "seibel meister",
-      "birthDate": "2020-10-13T22:00:00.000Z",
-      "kindergardenId": 1,
-      "id": "dYVdcFF"
+      "id": "JmbNaBH",
+      "registrationDate": "2024-01-03"
     }
   ],
   "kindergardens": [
