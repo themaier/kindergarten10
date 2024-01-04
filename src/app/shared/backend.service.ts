@@ -18,8 +18,8 @@ export class BackendService {
     });
   }
 
-  public getChildren(page: number) {
-    this.http.get<ChildResponse[]>(`http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${CHILDREN_PER_PAGE}`, { observe: 'response' }).subscribe(data => {
+  public getChildren(page: number, childrenPerPage = CHILDREN_PER_PAGE) {
+    this.http.get<ChildResponse[]>(`http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${childrenPerPage}`, { observe: 'response' }).subscribe(data => {
       this.storeService.children = data.body!;
       this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
       this.storeService.isLoading = false;

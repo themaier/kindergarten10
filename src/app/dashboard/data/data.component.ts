@@ -33,18 +33,7 @@ export class DataComponent implements OnInit {
   ;
 
   ngOnInit(): void {
-      // this.backendService.getChildren(this.currentPage).subscribe(data => {
-      //   this.dataSource.data = data;
-      //   this.dataSource.sort = this.sort;
-      // });
     this.backendService.getChildren(this.currentPage);
-    // this.backendService.getChildren(this.currentPage).subscribe(data => {
-    //   this.dataSource.data = data;
-    // });
-    // // this.storeService.children.sort = this.sort;
-    // this.dataSource = new MatTableDataSource(this.storeService.children);
-    // this.dataSource.sort = this.sort;
-    
   }
 
   sortChildrenBy(criteria: string): void {
@@ -103,10 +92,10 @@ export class DataComponent implements OnInit {
     return age;
   }
 
-  selectPage(i: any) {
+  selectPage(i: any, pageSize: number) {
     let currentPage = i;
     this.selectPageEvent.emit(currentPage)
-    this.backendService.getChildren(currentPage);
+    this.backendService.getChildren(currentPage, pageSize);
   }
 
   public cancelRegistration(childId: string) {
@@ -122,7 +111,7 @@ export class DataComponent implements OnInit {
   handlePageEvent(event: PageEvent) {
     const pageIndex = event.pageIndex;
     const pageSize = event.pageSize;
-    this.selectPage(pageIndex+1);
+    this.selectPage(pageIndex+1, pageSize);
   }
 }
 
