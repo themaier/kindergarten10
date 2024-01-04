@@ -19,6 +19,7 @@ export class BackendService {
   }
 
   public getChildren(page: number, childrenPerPage = CHILDREN_PER_PAGE) {
+    this.storeService.isLoading = true;
     this.http.get<ChildResponse[]>(`http://localhost:5000/childs?_expand=kindergarden&_page=${page}&_limit=${childrenPerPage}`, { observe: 'response' }).subscribe(data => {
       this.storeService.children = data.body!;
       this.storeService.childrenTotalCount = Number(data.headers.get('X-Total-Count'));
@@ -33,6 +34,7 @@ export class BackendService {
     }
 
     public deleteChildData(childId: string, page: number) {
+      this.storeService.isLoading = true;
       this.http.delete(`http://localhost:5000/childs/${childId}`).subscribe(_=> {
         this.getChildren(page);
       })
