@@ -67,6 +67,31 @@ export class DataComponent implements OnInit {
     });
   }
 
+  sortData(sort: Sort) {
+    // const data = this.desserts.slice();
+    // if (!sort.active || sort.direction === '') {
+    //   this.sortedData = data;
+    //   return;
+    // }
+
+    this.storeService.children.sort((a: any, b: any) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'name':
+          return compare(a.name, b.name, isAsc);
+        case 'kindergarden.name':
+          return compare(a.kindergarden.name, b.kindergarden.name, isAsc);
+        case 'registrationDate':
+          return compare(a.registrationDate, b.registrationDate, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+  
+
+
+
   getAge(birthDate: string) {
     var today = new Date();
     var birthDateTimestamp = new Date(birthDate);
@@ -102,3 +127,6 @@ export class DataComponent implements OnInit {
 }
 
 
+function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+}
