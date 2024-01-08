@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BackendService } from 'src/app/shared/backend.service';
-import { CHILDREN_PER_PAGE } from 'src/app/shared/constants';
 import { StoreService } from 'src/app/shared/store.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
@@ -9,6 +8,8 @@ import { MatSortModule, MatSort, Sort } from '@angular/material/sort';
 import { ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Child } from 'src/app/shared/interfaces/Child';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-data',
@@ -18,22 +19,38 @@ import { Child } from 'src/app/shared/interfaces/Child';
   imports: [
     MatPaginatorModule,
     MatSortModule,
+    ReactiveFormsModule,
     CommonModule
   ]
 })
 export class DataComponent implements OnInit {
 
-  constructor(public storeService: StoreService, private backendService: BackendService) {}
+  form: FormGroup;
+  
+
+  constructor(private fb: FormBuilder, public storeService: StoreService, private backendService: BackendService) {
+    this.form = this.fb.group({
+      kindergardenId: [null]
+    });
+  }
   @Input() currentPage!: number;
   @Output() selectPageEvent = new EventEmitter<number>();
-  // @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
   public page: number = 0;
+  public pageSize: number = 2;
+  public kindergardenId: number | null = null;
   public dataSource!: MatTableDataSource<Child>;
-  ;
 
   ngOnInit(): void {
-    this.backendService.getChildren(this.currentPage);
+    const kindergardenIdControl = this.form.get('kindergardenId');
+    if (kindergardenIdControl) {
+      kindergardenIdControl.valueChanges.subscribe(kindergardenId => {
+        this.kindergardenId = kindergardenId;
+        this.selectPage(this.page, this.pageSize);
+    })
+    }
+
+    this.backendService.getChildren(this.currentPage, this.pageSize, this.kindergardenId);
   }
 
   sortChildrenBy(criteria: string): void {
@@ -43,8 +60,7 @@ export class DataComponent implements OnInit {
       } else {
         const aValue = a[criteria];
         const bValue = b[criteria];
-  
-        // Assuming the values are strings for simplicity
+
         if (aValue < bValue) {
           return -1;
         }
@@ -57,12 +73,6 @@ export class DataComponent implements OnInit {
   }
 
   sortData(sort: Sort) {
-    // const data = this.desserts.slice();
-    // if (!sort.active || sort.direction === '') {
-    //   this.sortedData = data;
-    //   return;
-    // }
-
     this.storeService.children.sort((a: any, b: any) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
@@ -95,7 +105,7 @@ export class DataComponent implements OnInit {
   selectPage(i: any, pageSize: number) {
     let currentPage = i;
     this.selectPageEvent.emit(currentPage)
-    this.backendService.getChildren(currentPage, pageSize);
+    this.backendService.getChildren(currentPage, pageSize, this.kindergardenId);
   }
 
   public cancelRegistration(childId: string) {
@@ -106,12 +116,10 @@ export class DataComponent implements OnInit {
     return this.storeService.childrenTotalCount;
   }
 
-
-  // Handle Paginaton event
   handlePageEvent(event: PageEvent) {
-    const pageIndex = event.pageIndex;
-    const pageSize = event.pageSize;
-    this.selectPage(pageIndex+1, pageSize);
+    this.page = event.pageIndex+1;
+    this.pageSize = event.pageSize;
+    this.selectPage(this.page, this.pageSize);
   }
 }
 

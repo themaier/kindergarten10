@@ -1,6 +1,14 @@
 <div class="container">
+    <form [formGroup]="form" class="centered-element">
+        <label>Filter nach Kindergarten:</label>
+        <select formControlName="kindergardenId">
+            <option selected disabled>Bitte auswählen!</option>
+            <option [ngValue]=null>Alle</option>
+            <option *ngFor="let kindergarden of storeService.kindergardens" [ngValue]="kindergarden.id">
+                {{kindergarden.name}}</option>
+        </select>
+    </form>
     <table matSort (matSortChange)="sortData($event)">
-            
         <tr class="row justify-content-center align-items-center">
             <th class="col-xl-2 col-lg-3" mat-sort-header="name">Name</th>
             <th class="col-xl-2 col-lg-3" mat-sort-header="kindergarden.name">Kindergarten</th>

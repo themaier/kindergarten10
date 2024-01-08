@@ -9,3 +9,14 @@ button.active {
 button {
     margin-right: 5px;
 }
+
+.centered-element {
+    width: 50%;
+    background-color: whitesmoke;
+    margin: 0 auto;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-bottom: 50px;
+}
