@@ -3,7 +3,8 @@
     <div><img width="500" src={{imagePath}}>&nbsp;&nbsp;
     <button mat-button [matMenuTriggerFor]="menu">Menu</button></div>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item [routerLink]="['/dashboard']">Dashboard</button>
+        <button mat-menu-item [routerLink]="['/dashboard']">Anmeldung</button>
+        <button mat-menu-item [routerLink]="['/kindergarden']">Kindergarten</button>
         <button mat-menu-item [routerLink]="['/about']">About</button>
     </mat-menu>
 </div>

@@ -10,6 +10,7 @@ import { AddDataComponent } from './dashboard/add-data/add-data.component';
 import { HeaderComponent } from './header/header.component';
 import { ButtonComponent } from './dashboard/button/button.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { KindergardenPageComponent } from './kindergarden/kindergarden.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
@@ -18,18 +19,20 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     AppComponent,
     DashboardComponent,
     ButtonComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AddDataComponent,
     DataComponent,
+    KindergardenPageComponent,
     HttpClientModule,
     HeaderComponent,
     FormsModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   // providers: [{ provide: MAT_DATE_LOCALE, useValue: 'de' }],
   providers: [],

@@ -1,0 +1,20 @@
+
+<div class="centered-element">
+    <label>Kindergarten auswählen</label>
+    <select formControlName="kindergardenId">
+        <option selected disabled>Bitte auswählen!</option>
+        <option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">
+            {{kindergarden.name}}</option>
+    </select>
+    <br>
+    <div>
+        <p>Kindergarten Infos:</p>
+        <div *ngIf="selectedKindergarten">
+            <p>Adresse: {{ selectedKindergarten.address }}</p>
+            <p>Betreiber: {{ selectedKindergarten.betreiber }}</p>
+            <p>Typ: {{ selectedKindergarten.typ }}</p>
+        </div>
+    </div>
+</div>
+
+
