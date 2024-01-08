@@ -12,3 +12,14 @@
 select {
     width: 70%;
 }
+
+.fixed-width-image {
+    width: 500px; /* Set your desired width */
+    height: auto; /* This ensures the aspect ratio is maintained */
+  }
+
+@media (min-width: 768px) {
+.fixed-width-image {
+    width: 500px; /* Fixed width on larger screens */
+}
+}

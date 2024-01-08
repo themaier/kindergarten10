@@ -15,6 +15,8 @@
             <p>Adresse: {{ selectedKindergarten.address }}</p>
             <p>Betreiber: {{ selectedKindergarten.betreiber }}</p>
             <p>Typ: {{ selectedKindergarten.typ }}</p>
+            <br>
+            <img [src]="selectedKindergarten?.imagePath" alt="Kindergarten Bild" class="fixed-width-image">
         </div>
     </div>
 </div>

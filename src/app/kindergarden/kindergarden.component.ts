@@ -33,12 +33,9 @@ export class KindergardenPageComponent implements OnInit{
     if (kindergardenIdControl) {
       kindergardenIdControl.valueChanges.subscribe(kindergardenId => {
         if (kindergardenId) {
-          console.log("Selection triggered!", kindergardenId)
           this.backendService.getKindergartenDetails(Number(kindergardenId)).subscribe(
               data => {
                 if (data) {
-                  // Handle the received details
-                  console.log(data);
                   this.selectedKindergarten=data;
                 } else {
                   this.selectedKindergarten=null;
