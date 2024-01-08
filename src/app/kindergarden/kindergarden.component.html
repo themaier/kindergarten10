@@ -1,11 +1,13 @@
 
 <div class="centered-element">
-    <label>Kindergarten auswählen</label>
-    <select formControlName="kindergardenId">
-        <option selected disabled>Bitte auswählen!</option>
-        <option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">
-            {{kindergarden.name}}</option>
-    </select>
+    <form [formGroup]="form">
+        <label>Kindergarten auswählen</label>
+        <select formControlName="kindergardenId">
+            <option selected disabled>Bitte auswählen!</option>
+            <option *ngFor="let kindergarden of storeService.kindergardens" [value]="kindergarden.id">
+                {{kindergarden.name}}</option>
+        </select>
+    </form>
     <br>
     <div>
         <p>Kindergarten Infos:</p>
@@ -16,5 +18,4 @@
         </div>
     </div>
 </div>
-
 
